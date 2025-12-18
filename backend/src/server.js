@@ -25,8 +25,7 @@ app.use(cors({
 // Health check
 app.get('/api/v1/health', (req, res) => {
     res.status(200).json({ 
-        status: 'ok', 
-        agenda: agendaStarted ? 'running' : 'failed'
+        status: 'ok',
     });
 });
 
