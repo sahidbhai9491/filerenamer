@@ -23,6 +23,9 @@ class FileProcessor {
   /**
    * Process files based on tool and settings
    */
+  /**
+   * Process files based on tool and settings
+   */
   async processFiles(files, tool, settings) {
     console.log("FileProcessor.processFiles called:", {
       tool,
@@ -35,6 +38,9 @@ class FileProcessor {
     switch (tool) {
       case "rename":
         result = await this.processRename(files, settings);
+        break;
+      case "manual-rename": // ADD THIS CASE
+        result = await this.processManualRename(files, settings);
         break;
       case "convert":
         result = await this.processConvert(files, settings);
@@ -56,12 +62,100 @@ class FileProcessor {
     return result;
   }
 
+  async processManualRename(files, settings) {
+    const processedFiles = [];
+    const summary = {
+      renamed: 0,
+      skipped: 0,
+      total: files.length,
+    };
+
+    console.log("Processing manual renames:", settings.manualRenames);
+
+    for (const file of files) {
+      try {
+        const newName = settings.manualRenames[file.id];
+
+        if (newName && newName !== file.name) {
+          console.log(`Manual rename: "${file.name}" -> "${newName}"`);
+
+          // Create the modified file
+          const modifiedFile = await this.createModifiedFile(file, newName);
+
+          // Create updated file object with the new name
+          const updatedFile = {
+            ...file,
+            name: newName, // Update the name property!
+            originalName: file.name, // Store original name separately
+            newFile: modifiedFile,
+          };
+
+          processedFiles.push(updatedFile);
+          summary.renamed++;
+        } else {
+          // Keep original - no change needed
+          processedFiles.push({
+            ...file,
+            originalName: file.name,
+            newFile: file.file,
+            action: "skipped",
+          });
+          summary.skipped++;
+        }
+      } catch (error) {
+        console.error(`Error renaming ${file.name}:`, error);
+        processedFiles.push({
+          ...file,
+          error: error.message,
+          action: "failed",
+        });
+      }
+    }
+
+    return await this.saveFiles(processedFiles, summary);
+  }
+
   /**
    * Rename files with various patterns
    */
 
+  /**
+   * Rename files with various patterns
+   */
   async processRename(files, settings) {
     const processedFiles = [];
+
+    // REMOVE THIS BLOCK COMPLETELY - manual rename has its own tool now
+    // if (settings.manualRenames) {
+    //   console.log("Processing manual renames");
+    //   const processedFiles = [];
+    //
+    //   for (let i = 0; i < files.length; i++) {
+    //     const file = files[i];
+    //     const newName = settings.manualRenames[file.id];
+    //
+    //     if (newName && newName !== file.name) {
+    //       console.log(`Manual rename: "${file.name}" -> "${newName}"`);
+    //
+    //       processedFiles.push({
+    //         ...file,
+    //         newName,
+    //         originalName: file.name,
+    //         newFile: await this.createModifiedFile(file, newName),
+    //       });
+    //     } else {
+    //       // Keep original if no manual rename
+    //       processedFiles.push({
+    //         ...file,
+    //         newName: file.name,
+    //         originalName: file.name,
+    //         newFile: file.file,
+    //       });
+    //     }
+    //   }
+    //
+    //   return await this.saveFiles(processedFiles);
+    // }
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
@@ -151,6 +245,34 @@ class FileProcessor {
     }
 
     return await this.saveFiles(processedFiles);
+  }
+
+  async renameFileWithHandle(file, newName) {
+    if (!file.handle || !file.handle.move) {
+      throw new Error("File handle not available for renaming");
+    }
+
+    try {
+      // Rename using File System Access API
+      await file.handle.move(newName);
+
+      // Update file metadata
+      file.name = newName;
+      file.handle = await file.handle.getFile();
+
+      return true;
+    } catch (error) {
+      console.error(`Failed to rename ${file.name}:`, error);
+
+      // Fallback: create new file and mark old for deletion
+      const modifiedFile = await this.createModifiedFile(file, newName);
+      return {
+        renamed: true,
+        newFile: modifiedFile,
+        originalDeleted: false,
+        note: "Original file could not be deleted",
+      };
+    }
   }
 
   /**
@@ -308,6 +430,7 @@ class FileProcessor {
     for (const [folderName, folderFiles] of Object.entries(folders)) {
       for (let i = 0; i < folderFiles.length; i++) {
         const file = folderFiles[i];
+        // Create path with folder name
         const newName = folderName ? `${folderName}/${file.name}` : file.name;
 
         organizedFiles.push({
@@ -454,11 +577,12 @@ class FileProcessor {
   /**
    * Save files based on mode
    */
-  async saveFiles(processedFiles) {
+  async saveFiles(processedFiles, summary = {}) {
+    // Add summary parameter with default
     if (this.mode === "write" && this.folderHandle) {
-      return await this.saveFilesWriteMode(processedFiles);
+      return await this.saveFilesWriteMode(processedFiles, summary); // Pass summary
     } else {
-      return await this.saveFilesDownloadMode(processedFiles);
+      return await this.saveFilesDownloadMode(processedFiles, summary); // Pass summary
     }
   }
 
@@ -584,36 +708,49 @@ class FileProcessor {
 
     for (const file of processedFiles) {
       try {
-        console.log(`Processing file: ${file.name} -> ${file.newName}`);
+        const newName = file.newName || file.name;
+        const originalName = file.originalName || file.name;
+
+        console.log(`Processing file: ${originalName} -> ${newName}`);
 
         // Check if this is an organize operation (has folder path)
-        const hasFolderPath = file.newName.includes("/");
+        const hasFolderPath = newName.includes("/");
         let folderHandle = this.folderHandle;
-        let fileName = file.newName;
+        let fileName = newName;
 
         if (hasFolderPath) {
           // Extract folder and file name
-          const pathParts = file.newName.split("/");
+          const pathParts = newName.split("/");
           fileName = pathParts.pop(); // Last part is the file name
           const folderPath = pathParts.join("/"); // Rest is the folder path
 
-          // Create folder structure if needed
           if (folderPath) {
-            folderHandle = await this.createFolderRecursive(
-              this.folderHandle,
-              folderPath
-            );
-            console.log(`Created/accessed folder: ${folderPath}`);
+            try {
+              // Create folder structure recursively
+              folderHandle = await this.createFolderRecursive(
+                this.folderHandle,
+                folderPath
+              );
+              console.log(`Created/accessed folder: ${folderPath}`);
+            } catch (folderError) {
+              console.error(
+                `Error creating folder ${folderPath}:`,
+                folderError
+              );
+              throw new Error(
+                `Cannot create folder "${folderPath}": ${folderError.message}`
+              );
+            }
           }
         }
 
-        // Skip if name hasn't changed (for organize tool, etc.)
-        if (file.name === fileName && !hasFolderPath) {
-          console.log(`Skipping ${file.name} - name unchanged`);
+        // Skip if name hasn't changed AND no folder path
+        if (originalName === fileName && !hasFolderPath) {
+          console.log(`Skipping ${originalName} - name unchanged`);
           results.push({
             success: true,
             file: file,
-            path: file.newName,
+            path: newName,
             action: "skipped",
           });
           continue;
@@ -636,19 +773,13 @@ class FileProcessor {
 
         try {
           // Use the available file content
-          if (file.newFile) {
-            // We have a processed file blob
-            await writable.write(file.newFile);
-            console.log(`Wrote processed content to ${fileName}`);
-          } else if (file.file) {
-            // Use the original file
-            await writable.write(file.file);
-            console.log(`Wrote original content to ${fileName}`);
-          } else if (file.content) {
-            // Fallback to any content
-            await writable.write(file.content);
+          const fileContent = file.newFile || file.file;
+
+          if (fileContent) {
+            await writable.write(fileContent);
+            console.log(`Wrote content to ${fileName}`);
           } else {
-            throw new Error(`No file content available for ${file.name}`);
+            throw new Error(`No file content available for ${originalName}`);
           }
 
           await writable.close();
@@ -658,33 +789,35 @@ class FileProcessor {
           throw writeError;
         }
 
-        // Step 3: Try to delete the original file (only if not moving to subfolder)
+        // Step 3: Try to delete the original file (only if not moving to subfolder AND not same name)
         let originalDeleted = false;
-        if (file.name !== file.newName && !hasFolderPath) {
+        if (originalName !== fileName && !hasFolderPath) {
           try {
             if (this.folderHandle.removeEntry) {
-              await this.folderHandle.removeEntry(file.name);
+              await this.folderHandle.removeEntry(originalName);
               originalDeleted = true;
-              console.log(`Successfully deleted original file: ${file.name}`);
+              console.log(
+                `Successfully deleted original file: ${originalName}`
+              );
             }
           } catch (deleteError) {
-            console.warn(`Could not delete ${file.name}:`, deleteError);
+            console.warn(`Could not delete ${originalName}:`, deleteError);
           }
         }
 
         results.push({
           success: true,
           file: file,
-          path: file.newName,
+          path: newName,
           originalDeleted: originalDeleted,
           action: hasFolderPath
             ? "organized"
-            : file.name === fileName
+            : originalName === fileName
             ? "copied"
             : "renamed",
         });
       } catch (error) {
-        console.error(`Error processing file ${file.name}:`, error);
+        console.error(`Error processing file:`, error);
         results.push({
           success: false,
           file: file,
@@ -824,39 +957,43 @@ class FileProcessor {
     const results = [];
 
     // Create folder structure in ZIP
-    for (const file of processedFiles) {
+    for (const item of processedFiles) {
       try {
+        // Handle both structures
+        const file = item.file || item;
+        const newName = file.newName || file.name;
+        const fileContent = item.newFile || file.newFile || file.file;
+
+        if (!file || !file.name) {
+          throw new Error("Invalid file object");
+        }
+
+        if (!fileContent) {
+          throw new Error(`No file content available for ${file.name}`);
+        }
+
         // Check if this is an organize operation
-        if (file.newName.includes("/")) {
+        if (newName.includes("/")) {
           // Create folder structure in ZIP
           const folder = zip.folder(
-            file.newName.substring(0, file.newName.lastIndexOf("/"))
+            newName.substring(0, newName.lastIndexOf("/"))
           );
-
-          if (file.newFile) {
-            folder.file(file.newName.split("/").pop(), file.newFile);
-          } else {
-            folder.file(file.name, file.file);
-          }
+          folder.file(newName.split("/").pop(), fileContent);
         } else {
           // Add file directly to ZIP root
-          if (file.newFile) {
-            zip.file(file.newName, file.newFile);
-          } else {
-            zip.file(file.name, file.file);
-          }
+          zip.file(newName, fileContent);
         }
 
         results.push({
           success: true,
           file: file,
-          path: file.newName || file.name,
+          path: newName,
         });
       } catch (error) {
-        console.error(`Error adding file ${file.name} to ZIP:`, error);
+        console.error(`Error adding file to ZIP:`, error);
         results.push({
           success: false,
-          file: file,
+          file: item,
           error: error.message,
         });
       }

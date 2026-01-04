@@ -19,7 +19,7 @@ function Hero() {
                 <div className="flex flex-col items-center max-md:px-2 w-full">
                     {/* Announcement Badge */}
                     {/* Avatars + Stars */}
-                    <div className="flex items-center mt-24">
+                    <div className="flex items-center mt-10">
                         <div className="flex -space-x-3 pr-3">
                             <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" alt="user3" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-1" />
                             <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200" alt="user1" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-2" />
@@ -41,17 +41,17 @@ function Hero() {
                     </div>
 
                     {/* Main Heading */}
-                    <h1 className="text-center text-5xl leading-[68px] md:text-6xl md:leading-20 font-semibold max-w-4xl text-slate-900 mt-4">
-                        The fastest way to go from idea to impact.
+                    <h1 className="text-center text-3xl leading-[50px] md:text-5xl md:leading-20 font-semibold max-w-4xl text-slate-900 mt-4">
+                        Advanced File Renamer & File Rename Utility Online
                     </h1>
 
                     {/* Subheading */}
-                    <p className="text-center text-base text-slate-700 max-w-lg mt-6">
+                    {/* <p className="text-center text-base text-slate-700 max-w-lg mt-6">
                         Our platform helps you build, test, and deliver faster — so you can focus on what matters.
-                    </p>
+                    </p> */}
 
                     {/* CTA Buttons */}
-                    <div className="flex items-center gap-4 mt-8">
+                    {/* <div className="flex items-center gap-4 mt-8">
                         <button
                             onClick={handleGetStarted}
                             className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white active:scale-95 rounded-lg px-7 h-11 transition-all duration-200"
@@ -66,30 +66,33 @@ function Hero() {
                         >
                             Pricing
                         </Link>
+                    </div> */}
+
+                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 my-5">
+                        <div className="flex items-center gap-2">
+                            <Check className="size-5 text-indigo-600" />
+                            <span className="text-slate-700">No upload</span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                            <Check className="size-5 text-indigo-600" />
+                            <span className="text-slate-700">No download</span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                            <Check className="size-5 text-indigo-600" />
+                            <span className="text-slate-700">Full privacy</span>
+                        </div>
                     </div>
 
-                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 mt-12">
-                        <div className="flex items-center gap-2">
-                            <Check className="size-5 text-indigo-600" />
-                            <span className="text-slate-700">No credit card</span>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <Check className="size-5 text-indigo-600" />
-                            <span className="text-slate-700">30 days free trial</span>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                            <Check className="size-5 text-indigo-600" />
-                            <span className="text-slate-700">Setup in 10 minutes</span>
-                        </div>
+                    <div className="flex flex-wrap justify-center items-center">
+                        <p className='bg-red-100 py-2 px-5 rounded md:hidden my-5'>RenameTool works only in PC/Laptop.</p>
                     </div>
 
                     {/* Hero Image */}
                     {/* YouTube Video with Screenshot Preview */}
-                    <div className="w-full rounded-[15px] overflow-hidden max-w-4xl mt-16 shadow-2xl relative group">
+                    {/* <div className="w-full rounded-[15px] overflow-hidden max-w-4xl mt-16 shadow-2xl relative group">
                         <div className="w-full aspect-video bg-linear-to-br from-slate-900 to-indigo-900 flex items-center justify-center cursor-pointer relative">
-                            {/* Background image with overlay */}
                             <div
                                 className="absolute inset-0 bg-cover bg-center opacity-30"
                                 style={{
@@ -98,14 +101,10 @@ function Hero() {
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 via-slate-900/40 to-indigo-900/30" />
 
-                            {/* Content */}
                             <div className="relative z-10 flex flex-col items-center space-y-8 p-8">
-                                {/* Play button with glow */}
                                 <div className="relative">
-                                    {/* Outer glow */}
                                     <div className="absolute -inset-6 bg-linear-to-r from-indigo-500 to-purple-500 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
 
-                                    {/* Play button */}
                                     <div className="relative w-24 h-24 bg-linear-to-br from-white to-gray-100 rounded-full flex items-center justify-center shadow-2xl group-hover:shadow-indigo-500/50 group-hover:scale-110 transition-all duration-500">
                                         <div className="ml-2">
                                             <svg className="w-14 h-14 text-transparent bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text" fill="currentColor" viewBox="0 0 24 24">
@@ -115,7 +114,6 @@ function Hero() {
                                     </div>
                                 </div>
 
-                                {/* Text content */}
                                 <div className="text-center space-y-3">
                                     <h3 className="text-white text-3xl font-bold tracking-tight">
                                         Product Walkthrough
@@ -125,7 +123,6 @@ function Hero() {
                                     </p>
                                 </div>
 
-                                {/* Stats */}
                                 <div className="flex items-center gap-8 text-white/60 text-sm">
                                     <div className="flex items-center gap-2">
                                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -149,10 +146,9 @@ function Hero() {
                                 </div>
                             </div>
 
-                            {/* Bottom linear */}
                             <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-slate-900 to-transparent" />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </Container>

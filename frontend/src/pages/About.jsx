@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 
 function About() {
+    const navigate = useNavigate();
+
+    const handleGetStarted = () => {
+        navigate('/');
+    }
+
     return (
         <Container>
             {/* Hero Section - Split Layout */}
@@ -10,32 +17,30 @@ function About() {
                         <div>
                             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                                 About Us
-                                <span className="block text-indigo-600 mt-2">Starts Here</span>
                             </h2>
 
                             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                                We're not just developers; we're your strategic partners in digital
-                                transformation. From initial concept to final deployment, we ensure
-                                your digital presence stands out and delivers results.
+                                Renametool is a simple, browser-based file renaming platform built to help people rename and organize files quickly and safely.
+                                Our tool works directly on your computer, so your files stay private, secure, and fully under your control — with no uploads and no installations.
                             </p>
 
                             <div className="flex flex-wrap gap-4 mb-8">
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                    <span className="text-gray-700">Get Noticed</span>
+                                    <span className="text-gray-700">No upload</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                    <span className="text-gray-700">Generate Leads</span>
+                                    <span className="text-gray-700">No download</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                                    <span className="text-gray-700">Drive Downloads</span>
+                                    <span className="text-gray-700">Fully secure</span>
                                 </div>
                             </div>
 
-                            <button className="group relative px-8 py-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 overflow-hidden">
-                                <span className="relative z-10">Start Your Project Today</span>
+                            <button onClick={handleGetStarted} className="cursor-pointer group relative px-8 py-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 overflow-hidden">
+                                <span className="relative z-10">Try RenameTool - Free</span>
                                 <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </button>
                         </div>
@@ -52,8 +57,8 @@ function About() {
 
                             {/* Floating stats */}
                             <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl">
-                                <div className="text-3xl font-bold text-indigo-600">500+</div>
-                                <div className="text-gray-600 text-sm">Projects Delivered</div>
+                                <div className="text-3xl font-bold text-indigo-600">10K+</div>
+                                <div className="text-gray-600 text-sm">Happy Users</div>
                             </div>
                         </div>
                     </div>
@@ -63,16 +68,16 @@ function About() {
             {/* Stats Section */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-y border-gray-200">
                 <div className="text-center">
-                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">500+</h3>
-                    <p className="text-gray-600">Projects Delivered</p>
+                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">4.9/5</h3>
+                    <p className="text-gray-600">Average Rating</p>
                 </div>
                 <div className="text-center">
-                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">98%</h3>
-                    <p className="text-gray-600">Client Satisfaction</p>
+                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">10K+</h3>
+                    <p className="text-gray-600">Happy Users</p>
                 </div>
                 <div className="text-center">
-                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">50K+</h3>
-                    <p className="text-gray-600">Downloads Generated</p>
+                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">99%</h3>
+                    <p className="text-gray-600">Satisfaction Ratio</p>
                 </div>
             </div>
 
@@ -88,12 +93,7 @@ function About() {
                             <h2 className="text-2xl font-bold text-gray-900">Our Mission</h2>
                         </div>
                         <p className="text-gray-600 mb-4">
-                            To empower businesses with innovative digital solutions that drive growth,
-                            enhance visibility, and create meaningful connections with their audience.
-                        </p>
-                        <p className="text-gray-600">
-                            We're committed to delivering excellence through cutting-edge technology,
-                            creative design, and strategic thinking.
+                            To make file renaming fast, simple, and secure for everyone by providing a privacy-first tool that works directly in the browser.
                         </p>
                     </div>
 
@@ -106,12 +106,7 @@ function About() {
                             <h2 className="text-2xl font-bold text-gray-900">Our Vision</h2>
                         </div>
                         <p className="text-gray-600 mb-4">
-                            To be the leading partner for businesses seeking digital transformation,
-                            recognized globally for our innovation, reliability, and impact.
-                        </p>
-                        <p className="text-gray-600">
-                            We envision a world where every business, regardless of size, can leverage
-                            technology to achieve extraordinary success.
+                            To become a trusted, global solution for file organization by building tools that respect user privacy and save time.
                         </p>
                     </div>
                 </div>
@@ -122,10 +117,10 @@ function About() {
                 <h2 className="text-3xl font-bold text-center mb-12">Our Core Values</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
                     {[
-                        { icon: "💡", title: "Innovation", desc: "Pushing boundaries with creative solutions" },
-                        { icon: "🤝", title: "Collaboration", desc: "Working together for exceptional results" },
-                        { icon: "⚡", title: "Excellence", desc: "Delivering quality in everything we do" },
-                        { icon: "❤️", title: "Integrity", desc: "Honest and transparent partnerships" }
+                        { icon: "🔒", title: "Privacy First", desc: "Your files never leave your device" },
+                        { icon: "⚡", title: "Simplicity", desc: "Easy to use, no learning curve" },
+                        { icon: "🚀", title: "Efficiency", desc: "Save time with bulk actions" },
+                        { icon: "🤝", title: "Trust", desc: "Transparent and user-controlled" }
                     ].map((value, index) => (
                         <div key={index} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition duration-300">
                             <div className="text-3xl mb-4">{value.icon}</div>
@@ -147,33 +142,48 @@ function About() {
                     <h2 className="text-3xl font-bold mb-6">Why Choose Us?</h2>
 
                     <div className="flex flex-col gap-8">
-                        <div className="flex items-start gap-4">
+                        <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
                                 <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-semibold text-gray-800">Lightning-Fast Performance</h3>
-                                <p className="text-gray-600 mt-2">Optimized solutions that load quickly and perform seamlessly across all devices.</p>
+                                <h3 className="text-xl font-semibold text-gray-800">Rename files locally in your browser</h3>
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-4">
+                        <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
-                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/colorsEmoji.png" alt="Design" />
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-semibold text-gray-800">Beautifully Designed</h3>
-                                <p className="text-gray-600 mt-2">Modern, user-centric designs that captivate audiences and enhance engagement.</p>
+                                <h3 className="text-xl font-semibold text-gray-800">No file uploads, No data storage</h3>
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-4">
+                        <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
-                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/puzzelEmoji.png" alt="Integration" />
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-semibold text-gray-800">Seamless Integration</h3>
-                                <p className="text-gray-600 mt-2">Easy-to-implement solutions that work perfectly with your existing systems.</p>
+                                <h3 className="text-xl font-semibold text-gray-800">No software installation required</h3>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-4">
+                            <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-semibold text-gray-800">Fast bulk file renaming</h3>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-4">
+                            <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-semibold text-gray-800">Works on modern browsers</h3>
                             </div>
                         </div>
                     </div>
@@ -182,16 +192,16 @@ function About() {
 
             {/* CTA Section */}
             <div className="bg-linear-to-r from-indigo-600 to-purple-600 rounded-2xl p-12 text-center text-white max-w-full mx-auto mt-8 mb-16">
-                <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Digital Presence?</h2>
+                <h2 className="text-3xl font-bold mb-4">Advanced File Renamer Utility You Can Trust</h2>
                 <p className="text-lg mb-8 opacity-90">
-                    Join hundreds of successful businesses that trust us with their digital journey.
+                    RenameTool helps you bulk rename and organize files safely without uploading anything.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
-                        Start Your Project
+                    <button onClick={() => {navigate('/'); scrollTo({top:0, behavior: 'smooth'})}} className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 cursor-pointer">
+                        Try RenameTool - Free
                     </button>
-                    <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition duration-300">
-                        Schedule a Call
+                    <button onClick={() => {navigate('/contact'); scrollTo({top:0, behavior: 'smooth'})}} className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition duration-300 cursor-pointer">
+                        Contact Us
                     </button>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import Container from './Container';
 
@@ -6,34 +6,37 @@ const Testimonials = () => {
     const testimonials = [
         {
             id: 1,
-            name: "Emma Rodriguez",
-            address: "Barcelona, Spain",
+            name: "Mark R.",
+            address: "New York, USA",
             image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
             rating: 5,
-            review: "Exceptional service and attention to detail. Everything was handled professionally and efficiently from start to finish. Highly recommended!"
+            review: "I didn’t realize how much time I was wasting renaming files until I started using RenameTool. I work with a lot of folders every week, and this tool lets me rename everything in one go without installing any software. It’s simple, fast, and I feel safe knowing my files never leave my computer."
         },
         {
             id: 2,
-            name: "Liam Johnson",
-            address: "New York, USA",
+            name: "Rohit S.",
+            address: "Mumbai, India",
             image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
-            rating: 4,
-            review: "I'm truly impressed by the quality and consistency. The entire process was smooth, and the results exceeded all expectations. Thank you!"
+            rating: 5,
+            review: "RenameTool made my daily work much easier. Earlier, I had to manually rename files for every project, which was tiring and slow. Now I just select the folder, apply the rule, and everything is renamed instantly. No uploads, no confusion — it just works smoothly in the browser."
         },
         {
             id: 3,
-            name: "Sophia Lee",
-            address: "Seoul, South Korea",
+            name: "Sophia H.",
+            address: "London, UK",
             image: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=200",
             rating: 5,
-            review: "Fantastic experience! From start to finish, the team was professional, responsive, and genuinely cared about delivering great results."
+            review: "I use RenameTool almost every day now. Managing files used to feel messy, especially when working on multiple tasks. This tool helps me keep everything clean and organised without any setup. I like that it runs locally and respects privacy — it feels reliable and well thought out."
         }
     ];
 
-    const handleLeaveReview = () => {
-        // Navigate to review page or open review modal
-        console.log('Navigate to review page');
-    };
+    const navigate = useNavigate();
+
+    const handleGetStarted = () => {
+        // Navigate to get started page or open get started modal
+        navigate('/');
+        scrollTo({top: 0, behavior: 'smooth'});
+    }
 
     return (
         <section
@@ -46,14 +49,14 @@ const Testimonials = () => {
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
                     <div className="text-center mb-12">
-                        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Customer Testimonials
+                        <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                            What Users Say About RenameTool
                         </h1>
                         <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-8">
-                            Hear what our users say about us. We're always looking for ways to improve. If you have a positive experience with us, leave a review.
+                            Discover how RenameTool helps users rename files locally and securely. Learn how RenameTool makes file renaming faster, safer, and easier.
                         </p>
 
-                        <Link
+                        {/* <Link
                             to="/reviews"
                             className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95"
                             onClick={handleLeaveReview}
@@ -62,7 +65,7 @@ const Testimonials = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
                             Leave a Review
-                        </Link>
+                        </Link> */}
                     </div>
 
                     {/* Testimonials Grid */}
@@ -126,7 +129,7 @@ const Testimonials = () => {
                                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
-                                    <span className="text-sm text-slate-600">Verified Purchase</span>
+                                    <span className="text-sm text-slate-600">Verified User</span>
                                 </div>
                             </div>
                         ))}
@@ -141,10 +144,10 @@ const Testimonials = () => {
                             </div>
                             <div>
                                 <div className="text-4xl md:text-5xl font-bold mb-2">10K+</div>
-                                <p className="text-white/90">Happy Customers</p>
+                                <p className="text-white/90">Happy Users</p>
                             </div>
                             <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2">98%</div>
+                                <div className="text-4xl md:text-5xl font-bold mb-2">99%</div>
                                 <p className="text-white/90">Satisfaction Rate</p>
                             </div>
                         </div>
@@ -153,19 +156,19 @@ const Testimonials = () => {
                     {/* CTA */}
                     <div className="text-center mt-12">
                         <p className="text-slate-700 text-lg mb-6">
-                            Join thousands of satisfied customers who trust our services
+                            Rename and organise files in seconds with RenameTool.
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
-                            <Link
-                                to="/signup"
-                                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
+                            <button
+                                onClick={handleGetStarted}
+                                className="inline-flex cursor-pointer items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105"
                             >
-                                Get Started Free
+                                Try RenameTool - Free & Secure
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
-                            </Link>
-                            <Link
+                            </button>
+                            {/* <Link
                                 to="/testimonials"
                                 className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-indigo-600 font-semibold px-8 py-3 rounded-lg border border-indigo-200 transition-all duration-300 hover:scale-105"
                             >
@@ -173,7 +176,7 @@ const Testimonials = () => {
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>

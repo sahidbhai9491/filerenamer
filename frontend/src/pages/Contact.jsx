@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Contact() {
     const [formData, setFormData] = useState({
@@ -58,16 +59,24 @@ function Contact() {
 
     const faqItems = [
         {
-            question: "How soon will you respond to my message?",
-            answer: "We typically respond within 24 hours during business days. For urgent matters, feel free to call us directly."
+            question: "Is RenameTool safe to use?",
+            answer: "Yes. RenameTool works locally in your browser. Your files are never uploaded or stored on any server."
         },
         {
-            question: "Do you offer free consultations?",
-            answer: "Yes, we offer a free 30-minute initial consultation to discuss your project requirements and see how we can help."
+            question: "Do I need to install any software?",
+            answer: "No. RenameTool is completely browser-based and requires no installation or downloads."
         },
         {
-            question: "What types of projects do you work on?",
-            answer: "We specialize in web applications, mobile apps, UI/UX design, and digital transformation projects for businesses of all sizes."
+            question: "Does RenameTool overwrite my original files?",
+            answer: "Yes, but only after your confirmation. Files are renamed directly on your device."
+        },
+        {
+            question: "Which browsers are supported?",
+            answer: "RenameTool works on modern browsers like Chrome, Edge, and Brave."
+        },
+        {
+            question: "Is RenameTool free to use?",
+            answer: "Yes. RenameTool offers free file renaming features with no signup required."
         }
     ];
 
@@ -83,12 +92,12 @@ function Contact() {
                         Contact Us
                     </h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Have a question or want to work together? Send us a message and we'll get back to you as soon as possible.
+                        Have a question or need help? Reach out to us and we’ll get back to you as soon as possible.
                     </p>
                 </div>
 
                 {/* Contact Methods - Horizontal Row */}
-                <div className="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                {/* <div className="flex flex-col md:flex-row justify-center gap-6 mb-16">
                     {contactMethods.map((method, index) => (
                         <a
                             key={index}
@@ -102,7 +111,7 @@ function Contact() {
                             <p className="text-gray-700">{method.details}</p>
                         </a>
                     ))}
-                </div>
+                </div> */}
 
                 <div className="grid lg:grid-cols-3 gap-12">
                     {/* Contact Form */}
@@ -115,7 +124,7 @@ function Contact() {
                                 Fill out the form below and we'll get back to you soon.
                             </p>
 
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <div onSubmit={handleSubmit} className="space-y-6">
                                 {/* Full Name */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -161,7 +170,7 @@ function Contact() {
                                 </div>
 
                                 {/* Message */}
-                                <div>
+                                {/* <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
                                         Your Message
                                     </label>
@@ -174,15 +183,15 @@ function Contact() {
                                         className="w-full p-4 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 outline-none resize-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                                         required
                                     />
-                                </div>
+                                </div> */}
 
-                                <button
-                                    type="submit"
-                                    className="w-full md:w-auto px-8 py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow"
+                                <Link
+                                    to={`mailto:team.renametool@gmail.com`}
+                                    className="w-full cursor-pointer md:w-auto px-8 py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow"
                                 >
-                                    Send Message
-                                </button>
-                            </form>
+                                    Write Your Message
+                                </Link>
+                            </div>
                         </div>
                     </div>
 
@@ -195,7 +204,7 @@ function Contact() {
                                     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                                     <path d="M12 17h.01"></path>
                                 </svg>
-                                Frequently Asked Questions
+                                FAQs
                             </h3>
                             
                             <div className="space-y-4">
@@ -215,7 +224,7 @@ function Contact() {
                             </div>
 
                             {/* Additional Info */}
-                            <div className="mt-8 pt-6 border-t border-gray-200">
+                            {/* <div className="mt-8 pt-6 border-t border-gray-200">
                                 <h4 className="font-semibold text-gray-900 mb-3">
                                     Business Hours
                                 </h4>
@@ -233,7 +242,7 @@ function Contact() {
                                         <span className="font-medium text-red-500">Closed</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -244,8 +253,8 @@ function Contact() {
                         <div className="bg-white rounded-full px-6 py-3">
                             <p className="text-gray-700">
                                 Prefer to talk?{' '}
-                                <a href="tel:+15551234567" className="text-indigo-600 hover:text-indigo-700 font-semibold">
-                                    Call us directly
+                                <a href="mailto:team.renametool@gmail.com" className="text-indigo-600 hover:text-indigo-700 font-semibold">
+                                    Email us directly
                                 </a>
                             </p>
                         </div>

@@ -4,6 +4,7 @@ import ConvertTool from './tools/ConvertTool';
 import CompressTool from './tools/CompressTool';
 import OrganizeTool from './tools/OrganizeTool';
 import ResizeTool from './tools/ResizeTool';
+import ManualRenameTool from './tools/ManualRenameTool';
 
 function ProcessingTools({
     activeTool,
@@ -18,11 +19,12 @@ function ProcessingTools({
     const [toolSettings, setToolSettings] = useState({});
 
     const tools = [
-        { id: 'rename', name: 'Rename', icon: '📝', color: 'text-blue-600 bg-blue-100' },
-        { id: 'convert', name: 'Convert', icon: '🔄', color: 'text-purple-600 bg-purple-100' },
-        { id: 'compress', name: 'Compress', icon: '🗜️', color: 'text-green-600 bg-green-100' },
-        { id: 'organize', name: 'Organize', icon: '📂', color: 'text-yellow-600 bg-yellow-100' },
-        { id: 'resize', name: 'Resize', icon: '📐', color: 'text-red-600 bg-red-100' },
+        { id: 'manual-rename', name: 'Manual Rename', icon: '✏️', color: 'text-purple-600 bg-purple-100' },
+        { id: 'rename', name: 'Auto Rename', icon: '📝', color: 'text-blue-600 bg-blue-100' },
+        // { id: 'convert', name: 'Convert', icon: '🔄', color: 'text-purple-600 bg-purple-100' },
+        // { id: 'compress', name: 'Compress', icon: '🗜️', color: 'text-green-600 bg-green-100' },
+        { id: 'organize', name: 'Organize Files (New)', icon: '📂', color: 'text-yellow-600 bg-yellow-100' },
+        // { id: 'resize', name: 'Resize', icon: '📐', color: 'text-red-600 bg-red-100' },
     ];
 
     const handleProcess = async () => {
@@ -43,16 +45,23 @@ function ProcessingTools({
 
     const renderToolContent = () => {
         switch (activeTool) {
+            case 'manual-rename':
+                return <ManualRenameTool
+                    files={files}
+                    selectedFiles={selectedFiles}
+                    settings={toolSettings}
+                    setSettings={setToolSettings}
+                />;
             case 'rename':
                 return <RenameTool settings={toolSettings} setSettings={setToolSettings} />;
-            case 'convert':
-                return <ConvertTool settings={toolSettings} setSettings={setToolSettings} />;
-            case 'compress':
-                return <CompressTool settings={toolSettings} setSettings={setToolSettings} />;
+            // case 'convert':
+            //     return <ConvertTool settings={toolSettings} setSettings={setToolSettings} />;
+            // case 'compress':
+            //     return <CompressTool settings={toolSettings} setSettings={setToolSettings} />;
             case 'organize':
                 return <OrganizeTool settings={toolSettings} setSettings={setToolSettings} />;
-            case 'resize':
-                return <ResizeTool settings={toolSettings} setSettings={setToolSettings} />;
+            // case 'resize':
+            //     return <ResizeTool settings={toolSettings} setSettings={setToolSettings} />;
             default:
                 return null;
         }
@@ -62,14 +71,14 @@ function ProcessingTools({
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
             {/* Tool Selection Tabs */}
             <div className="border-b border-gray-200">
-                <div className="flex overflow-x-auto">
+                <div className="flex flex-wrap overflow-x-auto">
                     {tools.map((tool) => (
                         <button
                             key={tool.id}
                             onClick={() => setActiveTool(tool.id)}
-                            className={`flex-1 min-w-0 py-4 px-2 flex flex-col items-center transition-colors ${activeTool === tool.id
-                                    ? 'text-gray-900 border-b-2 border-indigo-600'
-                                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                            className={`flex-auto min-w-0 py-4 px-2 flex flex-col items-center transition-colors cursor-pointer ${activeTool === tool.id
+                                ? 'text-gray-900 border-b-2 border-indigo-600'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                                 }`}
                         >
                             <span className="text-xl mb-1">{tool.icon}</span>

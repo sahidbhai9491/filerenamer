@@ -254,7 +254,7 @@ function FileManager({
                         <div className="mt-6">
                             <button
                                 onClick={handleSelectFolder}
-                                className="inline-flex items-center px-4 py-2 bg-linear-to-r from-indigo-600 to-purple-600 text-white text-sm font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300"
+                                className="inline-flex cursor-pointer items-center px-4 py-2 bg-linear-to-r from-indigo-600 to-purple-600 text-white text-sm font-medium rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300"
                             >
                                 {mode === 'write' ? (
                                     <>
