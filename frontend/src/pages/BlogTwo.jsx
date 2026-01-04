@@ -8,6 +8,7 @@ function BlogTwo() {
                         src="https://images.pexels.com/photos/3803517/pexels-photo-3803517.jpeg"
                         alt="File organization and productivity tools"
                         className="w-full h-full object-cover"
+                        loading="lazy"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
                 </div>
@@ -23,7 +24,7 @@ function BlogTwo() {
                     <div className="flex flex-wrap items-center gap-4 mb-8 text-gray-600">
                         <div className="flex items-center gap-2">
                             <div className="w-10 h-10 rounded-full bg-linear-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-semibold overflow-hidden">
-                                <img src="/favicon.png" alt="userImg" className="w-full h-full object-cover" />
+                                <img src="/favicon.png" alt="userImg" loading="lazy" className="w-full h-full object-cover" />
                             </div>
                             <span className="font-medium">Rename Tool</span>
                         </div>

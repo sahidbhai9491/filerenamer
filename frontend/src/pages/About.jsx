@@ -51,6 +51,7 @@ function About() {
                                     src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=870&auto=format&fit=crop"
                                     alt="Team Collaboration"
                                     className="w-full h-64 md:h-96 object-cover"
+                                    loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent"></div>
                             </div>
@@ -137,6 +138,7 @@ function About() {
                     className="max-w-lg w-full rounded-2xl h-auto shadow-xl"
                     src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&w=830&h=844&auto=format&fit=crop"
                     alt="Our Team at Work"
+                    loading="lazy"
                 />
                 <div>
                     <h2 className="text-3xl font-bold mb-6">Why Choose Us?</h2>
@@ -144,7 +146,7 @@ function About() {
                     <div className="flex flex-col gap-8">
                         <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
-                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" loading="lazy" />
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">Rename files locally in your browser</h3>
@@ -153,7 +155,7 @@ function About() {
 
                         <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
-                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" loading="lazy" />
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">No file uploads, No data storage</h3>
@@ -162,7 +164,7 @@ function About() {
 
                         <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
-                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" loading="lazy" />
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">No software installation required</h3>
@@ -171,7 +173,7 @@ function About() {
 
                         <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
-                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" loading="lazy" />
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">Fast bulk file renaming</h3>
@@ -180,7 +182,7 @@ function About() {
 
                         <div className="flex items-center gap-4">
                             <div className="size-12 p-2 bg-indigo-50 border border-indigo-200 rounded-lg">
-                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" />
+                                <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png" alt="Fast" loading="lazy" />
                             </div>
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">Works on modern browsers</h3>

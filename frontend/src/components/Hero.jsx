@@ -21,11 +21,11 @@ function Hero() {
                     {/* Avatars + Stars */}
                     <div className="flex items-center mt-10">
                         <div className="flex -space-x-3 pr-3">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" alt="user3" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-1" />
-                            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200" alt="user1" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-2" />
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200" alt="user2" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-3" />
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" alt="user3" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-4" />
-                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="user5" className="size-8 rounded-full border-2 border-white hover:-translate-y-0.5 transition z-5" />
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" loading='lazy' alt="user3" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-1" />
+                            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200" loading='lazy' alt="user1" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-2" />
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200" loading='lazy' alt="user2" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-3" />
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200" loading='lazy' alt="user3" className="size-8 object-cover rounded-full border-2 border-white hover:-translate-y-0.5 transition z-4" />
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" loading='lazy' alt="user5" className="size-8 rounded-full border-2 border-white hover:-translate-y-0.5 transition z-5" />
                         </div>
 
                         <div>
@@ -71,12 +71,12 @@ function Hero() {
                     <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 my-5">
                         <div className="flex items-center gap-2">
                             <Check className="size-5 text-indigo-600" />
-                            <span className="text-slate-700">No upload</span>
+                            <span className="text-slate-700">No Software Installation</span>
                         </div>
 
                         <div className="flex items-center gap-2">
                             <Check className="size-5 text-indigo-600" />
-                            <span className="text-slate-700">No download</span>
+                            <span className="text-slate-700">No upload</span>
                         </div>
 
                         <div className="flex items-center gap-2">

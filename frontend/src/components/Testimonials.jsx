@@ -82,6 +82,7 @@ const Testimonials = () => {
                                             className="w-16 h-16 rounded-full border-4 border-white shadow-lg"
                                             src={testimonial.image}
                                             alt={testimonial.name}
+                                            loading='lazy'
                                         />
                                         <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-indigo-600 rounded-full flex items-center justify-center">
                                             <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
