@@ -101,6 +101,7 @@ function Home() {
         setProcessingResults(results);
 
         if (results && results.success && results.results) {
+            // Refresh files after successful write mode operation
             if (mode === 'write') {
                 refreshFilesFromFolder();
             }
@@ -131,6 +132,10 @@ function Home() {
                 }
                 if (summary.skipped > 0) {
                     message += `\n• Skipped: ${summary.skipped} files (no changes needed)`;
+                }
+                if (summary.caseChanges > 0) {
+                    message += `\n\n⚠️ Note: ${summary.caseChanges} files had case changes.`;
+                    message += `\nYou may need to manually delete the original files if they still exist.`;
                 }
 
                 // Check for files that couldn't be deleted
@@ -165,7 +170,7 @@ function Home() {
             // Get selected files using indices
             const selectedFileObjects = files.filter((_, index) => selectedFiles.includes(index));
 
-            console.log('Processing with:', { tool, settings, files: selectedFileObjects });
+            // console.log('Processing with:', { tool, settings, files: selectedFileObjects });
 
             // For manual rename, validate that at least one file has been renamed
             if (tool === 'manual-rename') {
@@ -195,7 +200,7 @@ function Home() {
                 settings
             );
 
-            console.log('Processing completed:', results);
+            // console.log('Processing completed:', results);
 
             handleProcessComplete(results);
         } catch (error) {
@@ -382,14 +387,13 @@ function Home() {
 
                     {/* Responsive Video */}
                     <div className="w-full overflow-hidden rounded-2xl shadow-lg">
-                        <div className="relative w-full aspect-video">
+                        <div className="relative w-full aspect-video bg-black">
                             <iframe
                                 className="absolute inset-0 w-full h-full"
-                                src="https://www.youtube.com/embed/AjWfY7SnMBI?si=oEzWj0tbFd35xma4"
-                                title="RenameTool Demo Video"
+                                src="https://player.vimeo.com/video/1151318386"
+                                title="Rename Tool - How It Works"
                                 frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin"
+                                allow="fullscreen; picture-in-picture"
                                 allowFullScreen
                                 loading="lazy"
                             />

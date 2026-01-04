@@ -40,7 +40,7 @@ const Testimonials = () => {
 
     return (
         <section
-            className="pb-16 px-4 md:px-8 lg:px-16"
+            className="pb-16 px-4 md:px-8 lg:px-16 pt-10"
             style={{
                 background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(46, 131, 251, 0.15) 35%, rgba(46, 131, 251, 0.15) 50%, rgba(255, 255, 255, 0.2) 100%)'
             }}

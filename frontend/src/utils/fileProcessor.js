@@ -27,12 +27,12 @@ class FileProcessor {
    * Process files based on tool and settings
    */
   async processFiles(files, tool, settings) {
-    console.log("FileProcessor.processFiles called:", {
-      tool,
-      settings,
-      filesCount: files.length,
-      mode: this.mode,
-    });
+    // console.log("FileProcessor.processFiles called:", {
+    //   tool,
+    //   settings,
+    //   filesCount: files.length,
+    //   mode: this.mode,
+    // });
 
     let result;
     switch (tool) {
@@ -58,7 +58,7 @@ class FileProcessor {
         throw new Error(`Unknown tool: ${tool}`);
     }
 
-    console.log("FileProcessor.processFiles returning:", result);
+    // console.log("FileProcessor.processFiles returning:", result);
     return result;
   }
 
@@ -70,14 +70,14 @@ class FileProcessor {
       total: files.length,
     };
 
-    console.log("Processing manual renames:", settings.manualRenames);
+    // console.log("Processing manual renames:", settings.manualRenames);
 
     for (const file of files) {
       try {
         const newName = settings.manualRenames[file.id];
 
         if (newName && newName !== file.name) {
-          console.log(`Manual rename: "${file.name}" -> "${newName}"`);
+          // console.log(`Manual rename: "${file.name}" -> "${newName}"`);
 
           // Create the modified file
           const modifiedFile = await this.createModifiedFile(file, newName);
@@ -164,26 +164,26 @@ class FileProcessor {
       let fileNameWithoutExt =
         newName.substring(0, newName.lastIndexOf(".")) || newName;
 
-      console.log(`Processing file: ${file.name}`);
-      console.log("Original settings:", settings);
+      // console.log(`Processing file: ${file.name}`);
+      // console.log("Original settings:", settings);
 
       // Apply prefix
       if (settings.prefix) {
-        console.log(`Adding prefix: "${settings.prefix}"`);
+        // console.log(`Adding prefix: "${settings.prefix}"`);
         fileNameWithoutExt = settings.prefix + fileNameWithoutExt;
       }
 
       // Apply suffix
       if (settings.suffix) {
-        console.log(`Adding suffix: "${settings.suffix}"`);
+        // console.log(`Adding suffix: "${settings.suffix}"`);
         fileNameWithoutExt = fileNameWithoutExt + settings.suffix;
       }
 
       // Find and replace
       if (settings.find) {
-        console.log(
-          `Find & replace: "${settings.find}" -> "${settings.replace || ""}"`
-        );
+        // console.log(
+        //   `Find & replace: "${settings.find}" -> "${settings.replace || ""}"`
+        // );
         fileNameWithoutExt = fileNameWithoutExt.replace(
           new RegExp(settings.find, "g"),
           settings.replace || ""
@@ -192,8 +192,8 @@ class FileProcessor {
 
       // Apply case
       if (settings.case && settings.case !== "keep") {
-        console.log(`Applying case: ${settings.case}`);
-        console.log(`Before case: "${fileNameWithoutExt}"`);
+        // console.log(`Applying case: ${settings.case}`);
+        // console.log(`Before case: "${fileNameWithoutExt}"`);
 
         switch (settings.case) {
           case "lower":
@@ -219,7 +219,7 @@ class FileProcessor {
             console.warn(`Unknown case type: ${settings.case}`);
         }
 
-        console.log(`After case: "${fileNameWithoutExt}"`);
+        // console.log(`After case: "${fileNameWithoutExt}"`);
       }
 
       // Apply numbering
@@ -227,14 +227,14 @@ class FileProcessor {
         const startNumber = settings.startNumber || 1;
         const digits = settings.digits || 1;
         const number = (startNumber + i).toString().padStart(digits, "0");
-        console.log(`Adding number: ${number}`);
+        // console.log(`Adding number: ${number}`);
         fileNameWithoutExt += `_${number}`;
       }
 
       // Reconstruct full name
       newName = `${fileNameWithoutExt}.${fileExtension}`;
 
-      console.log(`Final new name: "${newName}"`);
+      // console.log(`Final new name: "${newName}"`);
 
       processedFiles.push({
         ...file,
@@ -424,7 +424,7 @@ class FileProcessor {
       folders[folderName].push(file);
     });
 
-    console.log("Organizing into folders:", folders);
+    // console.log("Organizing into folders:", folders);
 
     // Process each folder
     for (const [folderName, folderFiles] of Object.entries(folders)) {
@@ -711,7 +711,7 @@ class FileProcessor {
         const newName = file.newName || file.name;
         const originalName = file.originalName || file.name;
 
-        console.log(`Processing file: ${originalName} -> ${newName}`);
+        // console.log(`Processing file: ${originalName} -> ${newName}`);
 
         // Check if this is an organize operation (has folder path)
         const hasFolderPath = newName.includes("/");
@@ -731,7 +731,7 @@ class FileProcessor {
                 this.folderHandle,
                 folderPath
               );
-              console.log(`Created/accessed folder: ${folderPath}`);
+              // console.log(`Created/accessed folder: ${folderPath}`);
             } catch (folderError) {
               console.error(
                 `Error creating folder ${folderPath}:`,
@@ -744,9 +744,14 @@ class FileProcessor {
           }
         }
 
+        // Check if name has actually changed (case-insensitive comparison for file systems)
+        const namesAreSameCaseInsensitive =
+          originalName.toLowerCase() === fileName.toLowerCase();
+        const namesAreSameExactly = originalName === fileName;
+
         // Skip if name hasn't changed AND no folder path
-        if (originalName === fileName && !hasFolderPath) {
-          console.log(`Skipping ${originalName} - name unchanged`);
+        if (namesAreSameExactly && !hasFolderPath) {
+          // console.log(`Skipping ${originalName} - name unchanged`);
           results.push({
             success: true,
             file: file,
@@ -762,7 +767,7 @@ class FileProcessor {
           newFileHandle = await folderHandle.getFileHandle(fileName, {
             create: true,
           });
-          console.log(`Created new file handle for: ${fileName} in folder`);
+          // console.log(`Created new file handle for: ${fileName} in folder`);
         } catch (error) {
           console.error(`Error creating file ${fileName}:`, error);
           throw new Error(`Cannot create file "${fileName}": ${error.message}`);
@@ -777,32 +782,79 @@ class FileProcessor {
 
           if (fileContent) {
             await writable.write(fileContent);
-            console.log(`Wrote content to ${fileName}`);
+            // console.log(`Wrote content to ${fileName}`);
           } else {
             throw new Error(`No file content available for ${originalName}`);
           }
 
           await writable.close();
-          console.log(`Successfully created ${fileName}`);
+          // console.log(`Successfully created ${fileName}`);
         } catch (writeError) {
           await writable.close().catch(() => {});
           throw writeError;
         }
 
-        // Step 3: Try to delete the original file (only if not moving to subfolder AND not same name)
+        // Step 3: Try to delete the original file
+        // Only delete if:
+        // 1. Not moving to subfolder
+        // 2. Names are different (case-sensitive check)
+        // 3. We're not just changing case on a case-insensitive file system
         let originalDeleted = false;
-        if (originalName !== fileName && !hasFolderPath) {
-          try {
-            if (this.folderHandle.removeEntry) {
-              await this.folderHandle.removeEntry(originalName);
-              originalDeleted = true;
-              console.log(
-                `Successfully deleted original file: ${originalName}`
+        let deletionSkippedReason = "";
+
+        if (!hasFolderPath && !namesAreSameExactly) {
+          // Check if it's just a case change on potentially case-insensitive file system
+          const isOnlyCaseChange = namesAreSameCaseInsensitive;
+
+          if (isOnlyCaseChange) {
+            // For case changes, we need to handle differently
+            // console.log(`Case change detected: ${originalName} -> ${fileName}`);
+
+            try {
+              // Try to rename using move if available
+              if (file.handle && file.handle.move) {
+                await file.handle.move(fileName);
+                originalDeleted = true;
+                // console.log(
+                //   `Successfully renamed via move: ${originalName} -> ${fileName}`
+                // );
+              } else {
+                // Fallback: create new file, try to delete old one
+                if (this.folderHandle.removeEntry) {
+                  await this.folderHandle.removeEntry(originalName);
+                  originalDeleted = true;
+                  // console.log(
+                  //   `Deleted original after case change: ${originalName}`
+                  // );
+                }
+              }
+            } catch (deleteError) {
+              console.warn(
+                `Could not handle case change for ${originalName}:`,
+                deleteError
               );
+              deletionSkippedReason = "Case change may require manual cleanup";
             }
-          } catch (deleteError) {
-            console.warn(`Could not delete ${originalName}:`, deleteError);
+          } else {
+            // Regular rename (different names)
+            try {
+              if (this.folderHandle.removeEntry) {
+                await this.folderHandle.removeEntry(originalName);
+                originalDeleted = true;
+                // console.log(
+                //   `Successfully deleted original file: ${originalName}`
+                // );
+              }
+            } catch (deleteError) {
+              console.warn(`Could not delete ${originalName}:`, deleteError);
+            }
           }
+        } else {
+          // console.log(
+          //   `Skipping deletion for ${originalName}: ${
+          //     hasFolderPath ? "Moving to folder" : "Name unchanged"
+          //   }`
+          // );
         }
 
         results.push({
@@ -810,9 +862,10 @@ class FileProcessor {
           file: file,
           path: newName,
           originalDeleted: originalDeleted,
+          deletionSkippedReason: deletionSkippedReason || undefined,
           action: hasFolderPath
             ? "organized"
-            : originalName === fileName
+            : namesAreSameExactly
             ? "copied"
             : "renamed",
         });
@@ -828,12 +881,17 @@ class FileProcessor {
 
     // Return consistent object structure
     const successfulResults = results.filter((r) => r.success);
+    const caseChangeFiles = successfulResults.filter((r) =>
+      r.deletionSkippedReason?.includes("Case change")
+    );
+
     return {
       success: results.every((r) => r.success),
       results: results,
       totalFiles: processedFiles.length,
       successfulFiles: successfulResults.length,
       mode: "write",
+      hasCaseChangeIssues: caseChangeFiles.length > 0,
       summary: {
         organized: successfulResults.filter((r) => r.action === "organized")
           .length,
@@ -841,6 +899,7 @@ class FileProcessor {
         copied: successfulResults.filter((r) => r.action === "copied").length,
         skipped: successfulResults.filter((r) => r.action === "skipped").length,
         failed: results.filter((r) => !r.success).length,
+        caseChanges: caseChangeFiles.length,
       },
     };
   }
@@ -885,7 +944,7 @@ class FileProcessor {
 
       // Try to move the file to trash
       // Note: This is more complex and might not work in all browsers
-      console.log(`Attempting to move ${file.name} to trash folder`);
+      // console.log(`Attempting to move ${file.name} to trash folder`);
 
       // For now, just log that we can't delete
       // In a real implementation, you might want to show a message to the user
@@ -1385,7 +1444,7 @@ class FileProcessor {
 
         // Check if this is a compression operation
         if (settings.quality !== undefined) {
-          console.log("Compressing image with quality:", settings.quality);
+          // console.log("Compressing image with quality:", settings.quality);
 
           // Compression with quality settings
           processedFile = await ImageProcessor.compressImage(file, {
@@ -1399,13 +1458,13 @@ class FileProcessor {
 
           // Log the size difference for debugging
           if (processedFile) {
-            console.log(`Size: ${file.size} -> ${processedFile.size} bytes`);
-            console.log(
-              `Reduction: ${(
-                (1 - processedFile.size / file.size) *
-                100
-              ).toFixed(1)}%`
-            );
+            // console.log(`Size: ${file.size} -> ${processedFile.size} bytes`);
+            // console.log(
+            //   `Reduction: ${(
+            //     (1 - processedFile.size / file.size) *
+            //     100
+            //   ).toFixed(1)}%`
+            // );
           }
         } else if (settings.format) {
           // Convert image
