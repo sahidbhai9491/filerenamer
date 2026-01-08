@@ -34,7 +34,7 @@ const Testimonials = () => {
 
     const handleGetStarted = () => {
         // Navigate to get started page or open get started modal
-        navigate('/');
+        // navigate('');
         scrollTo({top: 0, behavior: 'smooth'});
     }
 
