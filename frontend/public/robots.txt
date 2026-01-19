@@ -7,6 +7,9 @@ Disallow: /*.env$
 Disallow: /*.git/
 Disallow: /*.bak$
 
+Disallow: /*?ref=
+Disallow: /*?utm_
+
 # Allow all assets
 Allow: /static/
 Allow: /assets/

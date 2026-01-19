@@ -7,6 +7,7 @@ import ProcessingTools from '../components/ProcessingTools';
 import PreviewPanel from '../components/PreviewPanel';
 import FileProcessor from '../utils/fileProcessor';
 import { detectBrowserCapabilities, getRecommendedMode } from '../utils/browserDetector';
+import { Coffee } from "lucide-react";
 
 function WindowFileRenamer() {
     const [files, setFiles] = useState([]);
@@ -166,8 +167,6 @@ function WindowFileRenamer() {
             // Get selected files using indices
             const selectedFileObjects = files.filter((_, index) => selectedFiles.includes(index));
 
-            // console.log('Processing with:', { tool, settings, files: selectedFileObjects });
-
             // For manual rename, validate that at least one file has been renamed
             if (tool === 'manual-rename') {
                 if (!settings.manualRenames || Object.keys(settings.manualRenames).length === 0) {
@@ -196,8 +195,6 @@ function WindowFileRenamer() {
                 settings
             );
 
-            // console.log('Processing completed:', results);
-
             handleProcessComplete(results);
         } catch (error) {
             console.error('Processing error:', error);
@@ -218,188 +215,419 @@ function WindowFileRenamer() {
         <>
             <WindowFileRenamerHero />
 
-            <Container className={`bg-gray-50`}>
-                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
+            {/* Tool Section */}
+            <div id="tool-section">
+                <Container className={`bg-gray-50`}>
+                    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {/* Left Column - File Manager */}
-                        <div className="lg:col-span-1">
-                            <FileManager
-                                files={files}
-                                selectedFiles={selectedFiles}
-                                setSelectedFiles={setSelectedFiles}
-                                onFilesSelected={handleFilesSelected}
-                                mode={mode}
-                                folderHandle={folderHandle}
-                                setFolderHandle={setFolderHandle}
-                            />
-                        </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            {/* Left Column - File Manager */}
+                            <div className="lg:col-span-1">
+                                <FileManager
+                                    files={files}
+                                    selectedFiles={selectedFiles}
+                                    setSelectedFiles={setSelectedFiles}
+                                    onFilesSelected={handleFilesSelected}
+                                    mode={mode}
+                                    folderHandle={folderHandle}
+                                    setFolderHandle={setFolderHandle}
+                                />
+                            </div>
 
-                        {/* Middle Column - Preview */}
-                        <div className="lg:col-span-2">
-                            <PreviewPanel
-                                files={files}
-                                selectedFiles={selectedFiles}
-                                previewData={previewData}
-                                activeTool={activeTool}
-                                processingResults={processingResults}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Stats Bar */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-8">
-                        <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                            <div className="text-sm text-gray-500">Total Files</div>
-                            <div className="text-2xl font-bold text-gray-900">{files.length}</div>
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                            <div className="text-sm text-gray-500">Selected</div>
-                            <div className="text-2xl font-bold text-indigo-600">{selectedFiles.length}</div>
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                            <div className="text-sm text-gray-500">Mode</div>
-                            <div className="text-xl md:text-xl font-bold text-purple-600">
-                                {mode === 'write' ? 'Write Mode' : 'Download Mode'}
+                            {/* Middle Column - Preview */}
+                            <div className="lg:col-span-2">
+                                <PreviewPanel
+                                    files={files}
+                                    selectedFiles={selectedFiles}
+                                    previewData={previewData}
+                                    activeTool={activeTool}
+                                    processingResults={processingResults}
+                                />
                             </div>
                         </div>
-                        <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                            <div className="text-sm text-gray-500">Tool</div>
-                            <div className="text-xl md:text-xl font-bold text-gray-900 capitalize">{activeTool}</div>
+
+                        {/* Stats Bar */}
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-8">
+                            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div className="text-sm text-gray-500">Total Files</div>
+                                <div className="text-2xl font-bold text-gray-900">{files.length}</div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div className="text-sm text-gray-500">Selected</div>
+                                <div className="text-2xl font-bold text-indigo-600">{selectedFiles.length}</div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div className="text-sm text-gray-500">Mode</div>
+                                <div className="text-xl md:text-xl font-bold text-purple-600">
+                                    {mode === 'write' ? 'Write Mode' : 'Download Mode'}
+                                </div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div className="text-sm text-gray-500">Tool</div>
+                                <div className="text-xl md:text-xl font-bold text-gray-900 capitalize">{activeTool}</div>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Bottom Section - Processing Tools */}
-                    <div className="mt-8">
-                        <ProcessingTools
-                            activeTool={activeTool}
-                            setActiveTool={setActiveTool}
-                            files={files}
-                            selectedFiles={selectedFiles}
-                            mode={mode}
-                            onProcessStart={handleProcessStart}
-                            processing={processing}
-                        />
-                    </div>
-
-                    {/* Processing Results Summary */}
-                    {processingResults && (
+                        {/* Bottom Section - Processing Tools */}
                         <div className="mt-8">
-                            <div className={`p-4 rounded-lg ${processingResults.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
-                                }`}>
-                                <div className="flex items-center justify-between">
+                            <ProcessingTools
+                                activeTool={activeTool}
+                                setActiveTool={setActiveTool}
+                                files={files}
+                                selectedFiles={selectedFiles}
+                                mode={mode}
+                                onProcessStart={handleProcessStart}
+                                processing={processing}
+                            />
+                        </div>
+
+                        {/* Processing Results Summary */}
+                        {processingResults && (
+                            <div className="mt-8">
+                                <div className={`p-4 rounded-lg ${processingResults.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
+                                    }`}>
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <h3 className="font-medium text-gray-900">
+                                                {processingResults.success ? '✅ Processing Complete!' : '❌ Processing Failed'}
+                                            </h3>
+                                            <div className="text-sm text-gray-600 mt-1">
+                                                {mode === 'write'
+                                                    ? `Files were modified directly in your folder.`
+                                                    : `Files were downloaded as "${processingResults.zipName}".`
+                                                }
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => setProcessingResults(null)}
+                                            className="text-gray-500 hover:text-gray-700"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    {processingResults.results && (
+                                        <div className="mt-4 pt-4 border-t border-gray-200">
+                                            <div className="grid grid-cols-3 gap-4 text-sm">
+                                                <div>
+                                                    <div className="text-gray-600">Total Files</div>
+                                                    <div className="font-semibold text-gray-900">{processingResults.totalFiles || processingResults.results.length}</div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-gray-600">Successful</div>
+                                                    <div className="font-semibold text-green-600">
+                                                        {processingResults.successfulFiles || processingResults.results.filter(r => r.success).length}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-gray-600">Failed</div>
+                                                    <div className="font-semibold text-red-600">
+                                                        {processingResults.results.filter(r => !r.success).length}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </section>
+
+                    {/* Processing Overlay */}
+                    {processing && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                            <div className="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
+                                <div className="text-center">
+                                    <div className="mx-auto h-12 w-12 text-indigo-600 mb-4">
+                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                                    </div>
                                     <div>
-                                        <h3 className="font-medium text-gray-900">
-                                            {processingResults.success ? '✅ Processing Complete!' : '❌ Processing Failed'}
-                                        </h3>
-                                        <div className="text-sm text-gray-600 mt-1">
+                                        <div className="text-lg font-semibold text-gray-900">
+                                            {mode === 'write' ? 'Applying Changes' : 'Preparing Files'}
+                                        </div>
+                                        <div className="text-sm text-gray-600 mt-2">
                                             {mode === 'write'
-                                                ? `Files were modified directly in your folder.`
-                                                : `Files were downloaded as "${processingResults.zipName}".`
+                                                ? 'Modifying files directly in your folder...'
+                                                : 'Creating ZIP file for download...'
                                             }
                                         </div>
-                                    </div>
-                                    <button
-                                        onClick={() => setProcessingResults(null)}
-                                        className="text-gray-500 hover:text-gray-700"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                {processingResults.results && (
-                                    <div className="mt-4 pt-4 border-t border-gray-200">
-                                        <div className="grid grid-cols-3 gap-4 text-sm">
-                                            <div>
-                                                <div className="text-gray-600">Total Files</div>
-                                                <div className="font-semibold text-gray-900">{processingResults.totalFiles || processingResults.results.length}</div>
-                                            </div>
-                                            <div>
-                                                <div className="text-gray-600">Successful</div>
-                                                <div className="font-semibold text-green-600">
-                                                    {processingResults.successfulFiles || processingResults.results.filter(r => r.success).length}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="text-gray-600">Failed</div>
-                                                <div className="font-semibold text-red-600">
-                                                    {processingResults.results.filter(r => !r.success).length}
-                                                </div>
+                                        <div className="text-xs text-orange-600 mt-2 text-center flex items-center justify-center gap-2">
+                                            <Coffee />
+                                            <p className="block">Grab coffee, we'll rename 100 files by your first sip.</p>
+                                        </div>
+                                        <div className="mt-4">
+                                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                                <div className="bg-indigo-600 h-2 rounded-full animate-pulse" style={{ width: '70%' }}></div>
                                             </div>
                                         </div>
                                     </div>
-                                )}
+                                </div>
                             </div>
                         </div>
                     )}
-                </section>
+                </Container>
+            </div>
 
-                {/* Processing Overlay */}
-                {processing && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div className="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full mx-4">
-                            <div className="text-center">
-                                <div className="mx-auto h-12 w-12 text-indigo-600 mb-4">
-                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            {/* Content Section */}
+            <Container className="bg-white">
+                <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+                    {/* Introduction */}
+                    <div className="mb-8">
+                        <p className="text-lg text-gray-600 leading-relaxed">
+                            RenameTool works directly in your browser on Windows, allowing you to rename, preview, 
+                            and organize files locally with full privacy and complete control over your folders.
+                        </p>
+                    </div>
+
+                    {/* Main Content */}
+                    <div className="prose prose-lg max-w-none mb-12">
+                        {/* What Is the Real Problem Windows Users Face */}
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-4">What Is the Real Problem Windows Users Face with File Renaming?</h2>
+                            <p className="text-gray-700 mb-4">
+                                Windows makes it easy to rename a single file, but the problem starts when you need to rename many files at once. 
+                                Default file names, copied folders, and downloaded files quickly turn into a mess. 
+                                Built-in options are limited and become frustrating when consistency is required.
+                            </p>
+                            <div className="bg-gray-50 p-5 rounded-xl">
+                                <p className="font-semibold text-gray-800 mb-3">This problem usually appears when:</p>
+                                <ul className="text-gray-700 space-y-2 list-disc pl-5">
+                                    <li>Files are copied from different sources</li>
+                                    <li>Projects grow large over time</li>
+                                    <li>Naming formats need to stay consistent</li>
+                                </ul>
+                            </div>
+                            <p className="text-gray-700 mt-4">
+                                That's why users search specifically for a <strong>Windows file renamer</strong> that goes beyond basic options.
+                            </p>
+                        </div>
+
+                        {/* Why Windows' Default Rename Option Is Not Enough */}
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Windows' Default Rename Option Is Not Enough</h2>
+                            <p className="text-gray-700 mb-4">
+                                Windows allows basic bulk renaming, but it lacks flexibility and control. 
+                                You can't easily preview changes, apply custom rules, or organize files properly. 
+                                Once files are renamed, undoing mistakes can be difficult.
+                            </p>
+                            <div className="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg">
+                                <p className="font-semibold text-gray-800 mb-3">This method fails because it:</p>
+                                <ul className="text-gray-700 space-y-2">
+                                    <li className="flex items-start">
+                                        <span className="text-red-500 mr-2">•</span>
+                                        <span>Offers limited customization</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-red-500 mr-2">•</span>
+                                        <span>Lacks advanced preview</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-red-500 mr-2">•</span>
+                                        <span>Becomes risky with large folders</span>
+                                    </li>
+                                </ul>
+                                <p className="text-gray-700 mt-4 font-medium">
+                                    Users need a safer and clearer solution.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* How a Windows File Renamer Solves This Problem */}
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-4">How a Windows File Renamer Solves This Problem</h2>
+                            <p className="text-gray-700 mb-4">
+                                A Windows file renamer gives you more control over how files are named. 
+                                Instead of relying on basic system behavior, you define how names should look and apply changes in one step.
+                            </p>
+                            <div className="bg-green-50 p-6 rounded-xl">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <span className="text-green-600">⚡</span>
+                                    </div>
+                                    <h3 className="text-lg font-bold text-gray-900">RenameTool solves this by:</h3>
                                 </div>
-                                <div>
-                                    <div className="text-lg font-semibold text-gray-900">
-                                        {mode === 'write' ? 'Applying Changes' : 'Preparing Files'}
+                                <ul className="text-gray-700 space-y-3">
+                                    <li className="flex items-start">
+                                        <span className="text-green-500 mr-2">✓</span>
+                                        <span>Running directly in your browser on Windows</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-green-500 mr-2">✓</span>
+                                        <span>Allowing folder-level access with permission</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-green-500 mr-2">✓</span>
+                                        <span>Showing previews before applying changes</span>
+                                    </li>
+                                </ul>
+                                <p className="text-gray-700 mt-4 font-medium">
+                                    It improves control without adding complexity.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* How RenameTool Works on Windows */}
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">How RenameTool Works on Windows</h2>
+                            <p className="text-gray-700 mb-4">
+                                Using RenameTool on Windows is straightforward:
+                            </p>
+                            
+                            <div className="bg-blue-50 p-6 rounded-xl">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div className="bg-white p-5 rounded-lg border border-blue-200 text-center">
+                                        <div className="text-2xl font-bold text-blue-600 mb-3">1</div>
+                                        <h4 className="font-semibold text-gray-900 mb-2">Open Tool</h4>
+                                        <p className="text-gray-600 text-sm">in supported browser</p>
                                     </div>
-                                    <div className="text-sm text-gray-600 mt-2">
-                                        {mode === 'write'
-                                            ? 'Modifying files directly in your folder...'
-                                            : 'Creating ZIP file for download...'
-                                        }
+                                    
+                                    <div className="bg-white p-5 rounded-lg border border-blue-200 text-center">
+                                        <div className="text-2xl font-bold text-blue-600 mb-3">2</div>
+                                        <h4 className="font-semibold text-gray-900 mb-2">Select Files</h4>
+                                        <p className="text-gray-600 text-sm">or a folder</p>
                                     </div>
-                                    <div className="mt-4">
-                                        <div className="w-full bg-gray-200 rounded-full h-2">
-                                            <div className="bg-indigo-600 h-2 rounded-full animate-pulse" style={{ width: '70%' }}></div>
+                                    
+                                    <div className="bg-white p-5 rounded-lg border border-blue-200 text-center">
+                                        <div className="text-2xl font-bold text-blue-600 mb-3">3</div>
+                                        <h4 className="font-semibold text-gray-900 mb-2">Choose Rules</h4>
+                                        <p className="text-gray-600 text-sm">how to rename them</p>
+                                    </div>
+                                    
+                                    <div className="bg-white p-5 rounded-lg border border-blue-200 text-center">
+                                        <div className="text-2xl font-bold text-blue-600 mb-3">4</div>
+                                        <h4 className="font-semibold text-gray-900 mb-2">Preview & Apply</h4>
+                                        <p className="text-gray-600 text-sm">apply changes</p>
+                                    </div>
+                                </div>
+                                <div className="mt-6 p-4 bg-blue-100 rounded-lg">
+                                    <p className="text-blue-800 text-center font-medium">
+                                        No installation, no system modification, and no learning curve.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Command Line vs Windows File Renamer Tool */}
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Command Line vs Windows File Renamer Tool</h2>
+                            <p className="text-gray-700 mb-4">
+                                Command-line renaming on Windows is powerful but unforgiving. A small error can rename files incorrectly without warning.
+                            </p>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="bg-red-50 p-6 rounded-xl border border-red-200">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="text-red-500">❌</span>
+                                        <h3 className="text-lg font-bold text-gray-900">Command Line</h3>
+                                    </div>
+                                    <ul className="text-gray-700 space-y-3">
+                                        <li className="flex items-start">
+                                            <span className="text-red-500 mr-2">•</span>
+                                            <span>Powerful but unforgiving</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-red-500 mr-2">•</span>
+                                            <span>No visual preview</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-red-500 mr-2">•</span>
+                                            <span>Small errors cause big problems</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div className="bg-green-50 p-6 rounded-xl border border-green-200">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="text-green-500">✅</span>
+                                        <h3 className="text-lg font-bold text-gray-900">RenameTool</h3>
+                                    </div>
+                                    <ul className="text-gray-700 space-y-3">
+                                        <li className="flex items-start">
+                                            <span className="text-green-500 mr-2">✓</span>
+                                            <span>Visual previews</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-green-500 mr-2">✓</span>
+                                            <span>Local file handling</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-green-500 mr-2">✓</span>
+                                            <span>Browser-based convenience</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-green-500 mr-2">✓</span>
+                                            <span>Safer, user-friendly control</span>
+                                        </li>
+                                    </ul>
+                                    <p className="text-gray-700 mt-4 font-medium">
+                                        This makes it suitable for both beginners and professionals.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* FAQs */}
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">FAQs</h2>
+                            
+                            <div className="space-y-6">
+                                <div className="bg-white p-6 rounded-xl border border-gray-200">
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-gray-700 font-medium">❓</span>
+                                        <div>
+                                            <h4 className="font-semibold text-gray-900 mb-2">Is RenameTool safe to use on Windows?</h4>
+                                            <p className="text-gray-600">
+                                                Yes. All renaming happens locally on your Windows system. Files are never uploaded.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="bg-white p-6 rounded-xl border border-gray-200">
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-gray-700 font-medium">❓</span>
+                                        <div>
+                                            <h4 className="font-semibold text-gray-900 mb-2">Does it require installation?</h4>
+                                            <p className="text-gray-600">
+                                                No. It runs directly in your browser.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="bg-white p-6 rounded-xl border border-gray-200">
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-gray-700 font-medium">❓</span>
+                                        <div>
+                                            <h4 className="font-semibold text-gray-900 mb-2">Can it handle large folders?</h4>
+                                            <p className="text-gray-600">
+                                                Yes. RenameTool is designed for bulk file operations.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                )}
-            </Container>
 
-            <section className="w-full bg-gray-50 pb-12 md:py-16">
-                <Container className="max-w-7xl mx-auto px-4">
-
-                    {/* Heading */}
-                    <div className="text-center mb-8 md:mb-12">
-                        <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
-                            See How RenameTool Works
-                        </h2>
-                        <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
-                            Watch this quick demo to understand how RenameTool helps you rename files
-                            instantly, accurately, and without any hassle.
+                    {/* Call to Action */}
+                    <div className="bg-linear-to-r from-indigo-600 to-purple-600 rounded-2xl p-10 text-center text-white">
+                        <h3 className="text-2xl md:text-2xl font-bold mb-4">Stop struggling with Windows' limited rename options.</h3>
+                        <p className="text-base mb-6 opacity-90">
+                            Use RenameTool as your Windows file renamer to rename and organize files faster, safer, and with full control.
                         </p>
+                        <a 
+                            href="#tool-section" 
+                            className="inline-block bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300"
+                        >
+                            👉 Try Windows File Renamer – Free & Secure
+                        </a>
                     </div>
-
-                    {/* Responsive Video */}
-                    <div className="w-full overflow-hidden rounded-2xl shadow-lg">
-                        <div className="relative w-full aspect-video bg-black">
-                            <iframe
-                                className="absolute inset-0 w-full h-full"
-                                src="https://player.vimeo.com/video/1151318386"
-                                title="Rename Tool - How It Works"
-                                frameBorder="0"
-                                allow="fullscreen; picture-in-picture"
-                                allowFullScreen
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-
-                </Container>
-            </section>
-
-            <Testimonials />
+                </div>
+            </Container>
         </>
     );
 }

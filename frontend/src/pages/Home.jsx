@@ -11,6 +11,7 @@ import PreviewPanel from '../components/PreviewPanel';
 import BrowserModeSelector from '../components/BrowserModeSelector';
 import FileProcessor from '../utils/fileProcessor';
 import { detectBrowserCapabilities, getRecommendedMode, formatFileSize } from '../utils/browserDetector';
+import { Coffee } from "lucide-react";
 
 function Home() {
     const [files, setFiles] = useState([]);
@@ -358,6 +359,10 @@ function Home() {
                                             ? 'Modifying files directly in your folder...'
                                             : 'Creating ZIP file for download...'
                                         }
+                                    </div>
+                                    <div className="text-xs text-orange-600 mt-2 text-center flex items-center justify-center gap-2">
+                                        <Coffee />
+                                        <p className="block">Grab coffee, we'll rename 100 files by your first sip.</p>
                                     </div>
                                     <div className="mt-4">
                                         <div className="w-full bg-gray-200 rounded-full h-2">

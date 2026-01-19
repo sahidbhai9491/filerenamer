@@ -7,98 +7,98 @@
     <!-- Homepage - Highest Priority -->
     <url>
         <loc>https://renametool.com/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://renametool.com/advanced-renamer-software</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     
     <url>
         <loc>https://renametool.com/bulk-file-rename</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://renametool.com/batch-rename-utility</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://renametool.com/window-file-renamer</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://renametool.com/batch-rename-file-mac</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://renametool.com/linux-rename-file</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://renametool.com/bulk-rename-utility</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
-    <url>
+    <!-- <url>
         <loc>https://renametool.com/file-renamer</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
-    </url>
+    </url> -->
 
-    <url>
+    <!-- <url>
         <loc>https://renametool.com/rename-file</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
-    </url>
+    </url> -->
 
     <url>
         <loc>https://renametool.com/rename-file-online</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://renametool.com/file-name-changer</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     
     <url>
         <loc>https://renametool.com/blog/how-i-rename-multiple-files-at-once-on-windows</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
         <loc>https://renametool.com/blog/best-file-rename-tools-in-2026</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -106,15 +106,57 @@
     <!-- Informational Pages -->
     <url>
         <loc>https://renametool.com/about</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
     </url>
     
     <url>
         <loc>https://renametool.com/contact</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://renametool.com/changelog</loc>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://renametool.com/comparison</loc>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://renametool.com/faqs</loc>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://renametool.com/how-it-works</loc>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://renametool.com/privacy-policy</loc>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://renametool.com/terms-conditions</loc>
+        <lastmod>2026-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
     </url>
 </urlset>

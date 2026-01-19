@@ -35,7 +35,7 @@ function Hero() {
                                 ))}
                             </div>
                             <p className="text-sm text-gray-700">
-                                Used by 10,000+ users
+                                Used by 1000+ users
                             </p>
                         </div>
                     </div>

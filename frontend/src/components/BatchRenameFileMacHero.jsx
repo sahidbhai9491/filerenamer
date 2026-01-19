@@ -24,7 +24,7 @@ function BatchRenameFileMacHero() {
                                 ))}
                             </div>
                             <p className="text-sm text-gray-700">
-                                Used by 10,000+ users
+                                Used by 1000+ users
                             </p>
                         </div>
                     </div>
@@ -33,6 +33,8 @@ function BatchRenameFileMacHero() {
                     <h1 className="text-center text-3xl leading-[50px] md:text-5xl md:leading-20 font-semibold max-w-4xl text-slate-900 mt-4">
                         Batch Rename Files on Mac Easily
                     </h1>
+
+                    <p className="text-base text-gray-600 max-w-4xl mx-auto text-center py-2">On macOS, renaming one file is simple. The problem starts when you need to rename many files together. Finder offers basic options, but once naming rules become complex, things quickly feel limited and confusing.</p>
 
                     <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 my-5">
                         <div className="flex items-center gap-2">

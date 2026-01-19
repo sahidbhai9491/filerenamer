@@ -17,7 +17,7 @@ const Header = () => {
     const handleGetStarted = () => {
         // Add your get started logic here
         navigate('/');
-        scrollTo({top: 0, behavior: 'smooth'});
+        scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleLogin = () => {
@@ -63,12 +63,36 @@ const Header = () => {
                         About
                     </NavLink>
                     <NavLink
+                        to="/how-it-works"
+                        className={({ isActive }) =>
+                            `hover:text-slate-500 transition ${isActive ? 'text-indigo-600 font-medium' : ''}`
+                        }
+                    >
+                        How It Works
+                    </NavLink>
+                    <NavLink
+                        to="/faqs"
+                        className={({ isActive }) =>
+                            `hover:text-slate-500 transition ${isActive ? 'text-indigo-600 font-medium' : ''}`
+                        }
+                    >
+                        FAQs
+                    </NavLink>
+                    <NavLink
                         to="/contact"
                         className={({ isActive }) =>
                             `hover:text-slate-500 transition ${isActive ? 'text-indigo-600 font-medium' : ''}`
                         }
                     >
                         Contact
+                    </NavLink>
+                    <NavLink
+                        to="/comparison"
+                        className={({ isActive }) =>
+                            `hover:text-slate-500 transition ${isActive ? 'text-indigo-600 font-medium' : ''}`
+                        }
+                    >
+                        Comparison
                     </NavLink>
                 </div>
 
@@ -121,6 +145,24 @@ const Header = () => {
                     About
                 </NavLink>
                 <NavLink
+                    to="/how-it-works"
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                        `hover:text-slate-500 transition ${isActive ? 'text-indigo-600 font-medium' : ''}`
+                    }
+                >
+                    How It Works
+                </NavLink>
+                <NavLink
+                    to="/faqs"
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                        `hover:text-slate-500 transition ${isActive ? 'text-indigo-600 font-medium' : ''}`
+                    }
+                >
+                    FAQs
+                </NavLink>
+                <NavLink
                     to="/contact"
                     onClick={closeMenu}
                     className={({ isActive }) =>
@@ -128,6 +170,15 @@ const Header = () => {
                     }
                 >
                     Contact
+                </NavLink>
+                <NavLink
+                    to="/comparison"
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                        `hover:text-slate-500 transition ${isActive ? 'text-indigo-600 font-medium' : ''}`
+                    }
+                >
+                    Comparison
                 </NavLink>
 
                 <button

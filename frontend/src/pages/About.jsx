@@ -58,7 +58,7 @@ function About() {
 
                             {/* Floating stats */}
                             <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl">
-                                <div className="text-3xl font-bold text-indigo-600">10K+</div>
+                                <div className="text-3xl font-bold text-indigo-600">1K+</div>
                                 <div className="text-gray-600 text-sm">Happy Users</div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@ function About() {
                     <p className="text-gray-600">Average Rating</p>
                 </div>
                 <div className="text-center">
-                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">10K+</h3>
+                    <h3 className="text-4xl font-bold text-indigo-600 mb-2">1K+</h3>
                     <p className="text-gray-600">Happy Users</p>
                 </div>
                 <div className="text-center">
