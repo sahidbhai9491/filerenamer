@@ -52,20 +52,9 @@ const Testimonials = () => {
                         <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
                             What Users Say About RenameTool
                         </h1>
-                        <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-8">
+                        <p className="text-base text-slate-600 max-w-3xl mx-auto mb-8">
                             Discover how RenameTool helps users rename files locally and securely. Learn how RenameTool makes file renaming faster, safer, and easier.
                         </p>
-
-                        {/* <Link
-                            to="/reviews"
-                            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95"
-                            onClick={handleLeaveReview}
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                            Leave a Review
-                        </Link> */}
                     </div>
 
                     {/* Testimonials Grid */}
@@ -136,28 +125,10 @@ const Testimonials = () => {
                         ))}
                     </div>
 
-                    {/* Stats Section */}
-                    <div className="bg-linear-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2">4.9/5</div>
-                                <p className="text-white/90">Average Rating</p>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2">1K+</div>
-                                <p className="text-white/90">Happy Users</p>
-                            </div>
-                            <div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2">99%</div>
-                                <p className="text-white/90">Satisfaction Rate</p>
-                            </div>
-                        </div>
-                    </div>
-
                     {/* CTA */}
                     <div className="text-center mt-12">
                         <p className="text-slate-700 text-lg mb-6">
-                            Rename and organise files in seconds with RenameTool.
+                            Advanced file rename tool for Windows, Mac, and Linux—works right in your browser.
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
                             <button
@@ -169,15 +140,6 @@ const Testimonials = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </button>
-                            {/* <Link
-                                to="/testimonials"
-                                className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-indigo-600 font-semibold px-8 py-3 rounded-lg border border-indigo-200 transition-all duration-300 hover:scale-105"
-                            >
-                                Read More Reviews
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </Link> */}
                         </div>
                     </div>
                 </div>

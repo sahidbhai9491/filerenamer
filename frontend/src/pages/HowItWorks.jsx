@@ -81,7 +81,6 @@ const HowItWorks = () => {
                 "Edit each file name individually",
                 "Live preview shows changes instantly",
                 "Preserve file extensions",
-                "Undo/redo support"
             ],
             note: "The preview helps avoid mistakes by showing exactly how files will be renamed before applying changes.",
             imagePlaceholder: "📸 Manual rename interface - Showing edit fields with preview",

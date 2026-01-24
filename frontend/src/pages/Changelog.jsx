@@ -211,6 +211,7 @@ const Changelog = () => {
                     
                     <div className="space-y-8">
                         {[
+                            { version: "v1.2", date: "Jan 2025", description: "Added new pages for users" },
                             { version: "v1.1", date: "Jan 2025", description: "Performance improvements & bug fixes" },
                             { version: "v1.0", date: "Dec 2025", description: "Initial public release" }
                         ].map((item, index) => (

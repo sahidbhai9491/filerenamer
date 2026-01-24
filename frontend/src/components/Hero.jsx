@@ -42,13 +42,13 @@ function Hero() {
 
                     {/* Main Heading */}
                     <h1 className="text-center text-3xl leading-[50px] md:text-5xl md:leading-20 font-semibold max-w-4xl text-slate-900 mt-4">
-                        Advanced File Renamer & File Rename Utility Online
+                        Bulk File Renamer <br /> File Rename Utility Online
                     </h1>
 
                     {/* Subheading */}
-                    {/* <p className="text-center text-base text-slate-700 max-w-lg mt-6">
-                        Our platform helps you build, test, and deliver faster — so you can focus on what matters.
-                    </p> */}
+                    <p className="text-center text-base text-slate-700 max-w-4xl mt-6">
+                        Rename multiple files in seconds, safely and easily, directly from your browser. Works on Windows, Mac, and Linux — no installation needed.
+                    </p>
 
                     {/* CTA Buttons */}
                     {/* <div className="flex items-center gap-4 mt-8">
@@ -68,7 +68,7 @@ function Hero() {
                         </Link>
                     </div> */}
 
-                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 my-5">
+                    {/* <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 my-5">
                         <div className="flex items-center gap-2">
                             <Check className="size-5 text-indigo-600" />
                             <span className="text-slate-700">No Software Installation</span>
@@ -83,7 +83,7 @@ function Hero() {
                             <Check className="size-5 text-indigo-600" />
                             <span className="text-slate-700">Full privacy</span>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex flex-wrap justify-center items-center">
                         <p className='bg-red-100 py-2 px-5 rounded md:hidden my-5'>RenameTool works only in PC/Laptop.</p>

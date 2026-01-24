@@ -223,6 +223,7 @@ function Home() {
         <>
             <Hero />
 
+            {/* Tool section */}
             <Container className={`bg-gray-50`}>
                 <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
 
@@ -376,7 +377,8 @@ function Home() {
                 )}
             </Container>
 
-            <section className="w-full bg-gray-50 pb-12 md:py-16">
+            {/* Video Section */}
+            <section className="w-full bg-gray-50 md:pt-8">
                 <Container className="max-w-7xl mx-auto px-4">
 
                     {/* Heading */}
@@ -408,29 +410,107 @@ function Home() {
                 </Container>
             </section>
 
+            {/* Section 1: Core Tool Function */}
+            <section className="pt-16 bg-white">
+                <Container className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-8">
+                        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                            Rename Files Quickly and Simply
+                        </h2>
+                        <p className="text-base text-gray-600 max-w-3xl mx-auto">
+                            Renaming files one by one can take hours. With File Renamer, you can rename single files or large batches quickly.
+                        </p>
+                    </div>
 
-            {/* <Container>
-                <div className="text-center mt-12">
-                    <a
-                        href="/dashboard"
-                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
-                    >
-                        🚀 Launch File Processor
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </a>
-                    <p className="mt-2 text-sm text-gray-600">
-                        No login required • Process files directly in your browser
-                    </p>
-                </div>
-            </Container> */}
+                    <div className="mt-10 bg-gray-50 rounded-xl p-8 border border-gray-200 max-w-4xl mx-auto">
+                        <div className="text-center">
+                            <p className="text-lg text-gray-700 mb-6">
+                                Just select your files, choose your rule, preview the results, and rename — it's that simple.
+                            </p>
 
-            {/* <AITabSection /> */}
-            {/* <GallerySection /> */}
+                            <div className="mt-8 p-6 bg-white rounded-lg border border-gray-300">
+                                <p className="text-gray-800">
+                                    Whether you want to <span className="font-semibold text-indigo-600">Rename File</span>, perform <span className="font-semibold text-indigo-600">Bulk File Rename</span>, or use <span className="font-semibold text-indigo-600">Batch File Rename</span>, the process stays consistent, safe, and predictable.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* Section 2: Platform Support */}
+            <section className="pt-16 bg-gray-50">
+                <Container className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12">
+                        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+                            Works Perfectly on Your System
+                        </h2>
+                        <p className="text-base text-gray-600 max-w-3xl mx-auto">
+                            No downloads, no installations. Access our file rename program directly from your browser on any device.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                        <div className="bg-white rounded-xl shadow-sm p-8 text-center hover:shadow-md transition-shadow duration-300">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+                                <svg className="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18 3h-4V2h-4v1H6C4.346 3 3 4.346 3 6v12c0 1.654 1.346 3 3 3h12c1.654 0 3-1.346 3-3V6c0-1.654-1.346-3-3-3zm1 15c0 .551-.449 1-1 1H6c-.551 0-1-.449-1-1V6c0-.551.449-1 1-1h12c.551 0 1 .449 1 1v12z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">Windows File Rename</h3>
+                            <p className="text-gray-600 mb-4">
+                                Perfect for Windows users who need a reliable file name changer without downloading software.
+                            </p>
+                            <span className="inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+                                Works on Windows 10 & 11
+                            </span>
+                        </div>
+
+                        <div className="bg-white rounded-xl shadow-sm p-8 text-center hover:shadow-md transition-shadow duration-300">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-6">
+                                <svg className="w-10 h-10 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">File Renamer for Mac</h3>
+                            <p className="text-gray-600 mb-4">
+                                macOS users can rename file on Mac easily with our browser-based solution—no Mac App Store needed.
+                            </p>
+                            <span className="inline-block px-4 py-2 bg-gray-50 text-gray-700 rounded-full text-sm font-medium">
+                                Compatible with all macOS versions
+                            </span>
+                        </div>
+
+                        <div className="bg-white rounded-xl shadow-sm p-8 text-center hover:shadow-md transition-shadow duration-300">
+                            <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full mb-6">
+                                <svg className="w-10 h-10 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM6.5 9L10 5.5 13.5 9H11v4H9V9H6.5zm11 6L14 18.5 10.5 15H13v-4h2v4h2.5z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">Linux File Renamer</h3>
+                            <p className="text-gray-600 mb-4">
+                                Linux enthusiasts get a powerful file rename online tool that works across all distributions.
+                            </p>
+                            <span className="inline-block px-4 py-2 bg-orange-50 text-orange-700 rounded-full text-sm font-medium">
+                                All Linux distributions supported
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="mt-12 text-center">
+                        <div className="inline-flex items-center justify-center p-4 bg-indigo-50 rounded-xl">
+                            <svg className="w-6 h-6 text-indigo-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            <p className="text-gray-700 font-medium">
+                                Your files stay 100% local and private. No uploads to our servers—ever.
+                            </p>
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
             <Testimonials />
-            {/* <CTASection /> */}
         </>
     );
 }
