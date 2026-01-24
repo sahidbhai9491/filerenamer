@@ -12,6 +12,7 @@ import BrowserModeSelector from '../components/BrowserModeSelector';
 import FileProcessor from '../utils/fileProcessor';
 import { detectBrowserCapabilities, getRecommendedMode, formatFileSize } from '../utils/browserDetector';
 import { Coffee } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Home() {
     const [files, setFiles] = useState([]);
@@ -477,7 +478,7 @@ function Home() {
                                 macOS users can rename file on Mac easily with our browser-based solution—no Mac App Store needed.
                             </p>
                             <span className="inline-block px-4 py-2 bg-gray-50 text-gray-700 rounded-full text-sm font-medium">
-                                Compatible with all macOS versions
+                                Compatible with all macOS <Link to={`/changelog`}>versions</Link>
                             </span>
                         </div>
 
@@ -503,7 +504,7 @@ function Home() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
                             <p className="text-gray-700 font-medium">
-                                Your files stay 100% local and private. No uploads to our servers—ever.
+                                Your files stay 100% local and private. No uploads to our servers—ever. See <Link to={`/how-it-works`}>how it works</Link>.
                             </p>
                         </div>
                     </div>
